@@ -120,9 +120,3 @@ watch(() => [props.data], () => {
       class='d-flex flex-grow-1'/>
   </div>
 </template>
-
-<style lang='sass' scoped>
-canvas
-  height: 100%
-  width: 100%
-</style>
