@@ -46,7 +46,7 @@ const onCanvasResize = () => {
 
 const drawWaveform = () => {
   if(!audioData.value.length) return
-  console.log('drawWaveform')
+
   const canvas = waveform.value.$refs.canvas
   const ctx = canvas.getContext('2d')
   const width = Math.floor(canvas.clientWidth)

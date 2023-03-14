@@ -1,16 +1,29 @@
-import {turquoise} from '@/utils/colors.ts'
-
-interface AmplitudeRender {
+interface AmplitudeRenderParams {
+  // The color of the rendering
   color: Number,
+  // The context object to draw into
   ctx: CanvasRenderingContext2D
+  // An array of audio sample data
   data: Array
+  // The max height of an amplitude
   height: Integer
+  // The x coordinate to begin rendering
   x: Integer
+  // The y coordinate to begin rendering
   y: Integer
 }
 
 export default {
-  amplitudes: (amp: AmplitudeRender) => {
+  /**
+   * Renders amplitudes as a series of 1px wide rectangles, creating
+   * a fairly typical waveform.
+   *
+   * Note: The width of the render is implicitly the number of samples
+   * in the data, as each sample spans one pixel.
+   *
+   * @param amp: AmplitudeRender
+   */
+  amplitudes: (amp: AmplitudeRenderParams) => {
     const {color, ctx, data, height, x, y} = amp
     ctx.fillStyle = 'transparent'
     ctx.clearRect(x, y, data.length, height)
