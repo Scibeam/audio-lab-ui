@@ -31,12 +31,13 @@ const container = ref(null)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-const emit = defineEmits()
+const emit = defineEmits(['resize'])
 
 const onContainerResize = () => {
-  const rect = container.value.getBoundingClientRect()
-  const width = Math.floor(rect.width - props.padding * 2)
-  const height = Math.floor(rect.height - props.padding * 2)
+  const containerWidth = container.value.clientWidth
+  const containerHeight = container.value.clientHeight
+  const width = Math.floor(containerWidth - props.padding * 2)
+  const height = Math.floor(containerHeight - props.padding * 2)
   canvas.value.width = width
   canvas.value.height = height
   emit('resize', {width, height})
@@ -48,8 +49,10 @@ const onContainerResize = () => {
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-onMounted(() => {
-  onContainerResize()
+onMounted(async () => {
+  setTimeout(() => {
+    onContainerResize()
+  }, 100)
 })
 </script>
 
@@ -59,11 +62,20 @@ onMounted(() => {
     v-resize='onContainerResize'
     :style='{
       height: `${props.height}px`,
-      padding: `${props.padding}px`
+      position: `relative`
     }'
     class='d-flex flex-grow-1'>
     <canvas
       ref='canvas'
-      class='d-flex flex-grow-1'/>
+      :style='{
+        top: `${props.padding}px`,
+        left: `${props.padding}px`
+      }'
+      class='canvas'/>
   </div>
 </template>
+
+<style lang='sass' scoped>
+.canvas
+  position: absolute
+</style>

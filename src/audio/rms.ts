@@ -6,7 +6,7 @@
  * @hop: Integer          The distance, in seconds, to move the window
  * @sampleRate: Integer   The original sample rate of the data
  */
-export const rms = async (
+export default const rms = async (
   channels: Array, duration: Integer, hop: Integer, sampleRate: Integer) => {
   return new Promise((resolve, reject) => {
     const length = channels[0].length

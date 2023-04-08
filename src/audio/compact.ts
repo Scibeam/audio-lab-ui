@@ -1,5 +1,5 @@
 /**
- * Comacts an waveform for visualization by averaging windows of audio data
+ * Compacts a waveform for visualization by averaging windows of audio data
  *
  * @channels: Array     A list of lists of floating point values
  * @width: Integer      The width in pixels for the visualization

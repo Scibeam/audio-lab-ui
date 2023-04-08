@@ -45,7 +45,8 @@ const isSelectedTrack = track => {
     density='compact'>
     <thead>
       <tr>
-        <th>
+        <th
+          class='d-flex justify-start'>
           <v-icon
             color='primary'>
             fa fa-record-vinyl
@@ -68,7 +69,8 @@ const isSelectedTrack = track => {
         <td
           :style='{
             textAlign: `center`
-          }'>
+          }'
+          class='d-flex justify-start'>
           <v-icon
             @click='onTrackPlayStopClick(track)'
             :color='isSelectedTrack(track) ? `secondary` : null'

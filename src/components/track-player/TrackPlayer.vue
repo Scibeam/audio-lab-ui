@@ -8,7 +8,7 @@ import {Player} from 'tone'
 import tracks from '@/assets/data/tracks.json'
 import {compactForWaveformVis} from '@/audio/compact.ts'
 import Canvas from '@/components/Canvas.vue'
-import TrackList from '@/components/TrackList.vue'
+import TrackList from '@/components/track-player/TrackList.vue'
 import {ToneAudioBuffer} from 'tone'
 import {pea} from '@/utils/colors.ts'
 import WaveformRendering from '@/utils/rendering/waveform.ts'
@@ -109,5 +109,4 @@ watch(currentTrack, () => {
 .waveform
   border: 1px solid rgb(var(--v-theme-primary))
   border-radius: 0.25em
-  overflow: hidden
 </style>

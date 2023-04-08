@@ -1,10 +1,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-import DetectingPeaksAndTroughs from '@/views/DetectingPeaksAndTroughs.vue'
+import AudioPeakDetection from '@/projects/audio-peak-detection/Main.vue'
 import Main from '@/views/Main.vue'
 
 export const Routes:Enum = {
-  DetectingPeaksAndTroughs: '/detecting-peaks-and-troughs-with-js'
+  AudioPeakDetection: '/audio-peak-detection'
 }
 
 export default createRouter({
@@ -13,7 +13,7 @@ export default createRouter({
     path: '/',
     component: Main
   }, {
-    path: Routes.DetectingPeaksAndTroughs,
-    component: DetectingPeaksAndTroughs
+    path: Routes.AudioPeakDetection,
+    component: AudioPeakDetection
   }]
 })
