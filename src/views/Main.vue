@@ -30,6 +30,12 @@ import {Routes} from '@/router/index.ts'
               1. Audio Peak Detection
             </v-list-item-title>
           </v-list-item>
+          <v-list-item
+            :to='Routes.SonicSignatures'>
+            <v-list-item-title>
+              1. Sonic Signatures
+            </v-list-item-title>
+          </v-list-item>
         </v-list>
       </div>
     </v-container>
