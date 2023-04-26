@@ -13,17 +13,22 @@ import {
 
 const props = defineProps({
   height: {
-    type: Number,
     default: 64
   },
   padding: {
     type: Number,
     default: 4
+  },
+  type: {
+    type: String,
+    default: 'canvas'
   }
 })
 
 const canvas = ref(null)
+const svg = ref(null)
 const container = ref(null)
+const canvasSize = ref({width: 0, height: 0})
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -38,9 +43,20 @@ const onContainerResize = () => {
   const containerHeight = container.value.clientHeight
   const width = Math.floor(containerWidth - props.padding * 2)
   const height = Math.floor(containerHeight - props.padding * 2)
-  canvas.value.width = width
-  canvas.value.height = height
-  emit('resize', {width, height})
+
+  if(canvas.value) {
+    canvas.value.setAttribute('width', width)
+    canvas.value.setAttribute('height', height)
+  }
+
+  if(svg.value) {
+    svg.value.setAttribute('width', width)
+    svg.value.setAttribute('height', height)
+  }
+
+  canvasSize.value.width = width
+  canvasSize.value.height = height
+  emit('resize', {...canvasSize.value})
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -66,16 +82,28 @@ onMounted(async () => {
     }'
     class='d-flex flex-grow-1'>
     <canvas
-      ref='canvas'
+      v-if='props.type === `composite` || props.type === `canvas`'
       :style='{
+        height: `${canvasSize.height}px`,
+        left: `${props.padding}px`,
+        position: `absolute`,
         top: `${props.padding}px`,
-        left: `${props.padding}px`
+        width: `${canvasSize.width}px`
       }'
-      class='canvas'/>
+      ref='canvas'/>
+
+    <svg
+      v-if='props.type === `composite` || props.type === `svg`'
+      :style='{
+        height: `${canvasSize.height}px`,
+        left: `${props.padding}px`,
+        position: `absolute`,
+        top: `${props.padding}px`,
+        width: `${canvasSize.width}px`
+      }'
+      ref='svg'>
+      <slot
+        name='svg-content'/>
+    </svg>
   </div>
 </template>
-
-<style lang='sass' scoped>
-.canvas
-  position: absolute
-</style>
